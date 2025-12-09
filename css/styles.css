@@ -25,6 +25,11 @@ html {
   overflow-x: hidden; /* Prevent scroll from blur margins if any */
 }
 
+/* Ensure the container takes full height for vertical centering */
+.container {
+  min-height: 100vh;
+}
+
 /* Background Image Layer */
 body::before {
   content: "";
@@ -58,6 +63,44 @@ body {
   background: transparent;
 }
 
+/* Icon Buttons Container */
+.icon-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.icon-btn:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.icon-btn:active {
+  transform: translateY(0);
+}
+
 .top-bar {
   height: 50px;
   background-color: var(--light-bg);
@@ -84,7 +127,7 @@ body {
   border-radius: 40px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   max-width: 520px;
-  margin: 40px auto;
+  margin: 0; /* Remove margin to let flex container center it */
   padding: 40px 50px;
 }
 

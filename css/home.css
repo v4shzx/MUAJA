@@ -1,0 +1,241 @@
+/* Home Page Specific Styles */
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+  /* Use light background variable instead of gradient/image */
+  background: var(--light-bg);
+}
+
+/* Remove the background image and overlay from styles.css */
+body::before,
+body::after {
+  content: none;
+  display: none;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+/* User Profile Section */
+.user-profile {
+  padding: 30px 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-icon {
+  font-size: 80px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 0;
+  overflow-y: auto;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+}
+
+.nav-item i {
+  font-size: 20px;
+  margin-right: 15px;
+  width: 24px;
+  text-align: center;
+}
+
+.nav-item span {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.nav-item.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-left-color: #ffffff;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logout-btn {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+/* Main Content Area */
+.main-content {
+  margin-left: 250px;
+  flex: 1;
+  padding: 40px;
+  background: transparent;
+}
+
+.content-header {
+  margin-bottom: 30px;
+}
+
+.content-header h1 {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.content-body {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+}
+
+.content-body p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+  }
+
+  .user-profile {
+    padding: 20px 10px;
+  }
+
+  .user-icon {
+    font-size: 40px;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .nav-item span {
+    display: none;
+  }
+
+  .nav-item {
+    padding: 15px;
+    justify-content: center;
+  }
+
+  .nav-item i {
+    margin-right: 0;
+  }
+
+  .main-content {
+    margin-left: 70px;
+    padding: 20px;
+  }
+
+  .content-header h1 {
+    font-size: 24px;
+  }
+}
+
+/* Settings View Styles */
+.settings-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.profile-header-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile-img-large {
+  font-size: 80px;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.settings-form .form-label {
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.settings-form .form-control {
+  border-radius: 8px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+}
+
+.settings-form .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25); /* Note: requires RGB vars or approx */
+  box-shadow: 0 0 0 0.2rem rgba(128, 0, 32, 0.15); /* Fallback to Guindaish shadow */
+}
+
+.settings-form .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.settings-form .btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.settings-form .btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.settings-form .btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}

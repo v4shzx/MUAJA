@@ -37,4 +37,26 @@ document.addEventListener('DOMContentLoaded', () => {
     btnMaestro.addEventListener('click', () => {
         setActive('maestro');
     });
+
+    // Icon button handlers
+    const btnMoon = document.getElementById('btnMoon');
+    const btnAccessibility = document.getElementById('btnAccessibility');
+
+    btnMoon.addEventListener('click', () => {
+        // Placeholder for dark mode toggle functionality
+        console.log('Moon button clicked - Dark mode toggle');
+    });
+
+    btnAccessibility.addEventListener('click', () => {
+        // Placeholder for accessibility features
+        console.log('Accessibility button clicked');
+    });
+
+    // Form submission handler
+    const loginForm = document.querySelector('form');
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent default form submission
+        // Redirect to home.html
+        window.location.href = 'home.html';
+    });
 });
