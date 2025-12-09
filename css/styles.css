@@ -1,0 +1,238 @@
+:root {
+  /* Default Theme: Student (Guinda) */
+  --primary-color: #800020;
+  --primary-gradient: linear-gradient(to right, #a00020, #800020);
+  /* Neutral dark overlay for background image (No color tint) */
+  --bg-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85)); 
+  --light-bg: #fff0f0;
+  --text-color: #333333;
+}
+
+.teacher-theme {
+  /* Teacher Theme: Green */
+  --primary-color: #198754;
+  --primary-gradient: linear-gradient(to right, #28a745, #198754);
+  /* Same neutral overlay for Teacher */
+  --bg-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85));
+  --light-bg: #ecf9f2;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  overflow-x: hidden; /* Prevent scroll from blur margins if any */
+}
+
+/* Background Image Layer */
+body::before {
+  content: "";
+  position: fixed;
+  top: -10px;
+  left: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  background-image: url('https://utom.edu.mx/wp-content/uploads/2024/02/IMG_2675-scaled.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+  z-index: -2;
+}
+
+/* Theme Overlay Layer */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-gradient);
+  transition: background 0.5s ease;
+  z-index: -1;
+}
+
+/* Remove direct background from body as it is handled by ::after */
+body {
+  background: transparent;
+}
+
+.top-bar {
+  height: 50px;
+  background-color: var(--light-bg);
+  transition: background-color 0.3s ease;
+}
+
+.circle-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  margin-right: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.card-login {
+  background-color: #ffffff;
+  border-radius: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 40px 50px;
+}
+
+.brand-title {
+  letter-spacing: 18px;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 25px;
+  transition: color 0.3s ease;
+}
+
+.role-label {
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #777777;
+}
+
+.role-switch {
+  position: relative;
+  background-color: var(--light-bg);
+  border-radius: 999px;
+  padding: 4px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+/* El fondo que se mueve */
+.switch-bg {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  height: calc(100% - 8px);
+  background: var(--primary-gradient);
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1;
+}
+
+.role-option {
+  flex: 1;
+  border-radius: 999px;
+  border: none;
+  padding: 8px 0;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #000000;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.role-option.active {
+  color: #ffffff;
+  background: transparent; 
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: #777777;
+  margin-bottom: 15px;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #b9b9b9;
+}
+
+.input-with-icon {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-with-icon input {
+  padding-left: 46px;
+  border-radius: 999px;
+  border: 2px solid #d6d6d6;
+  background-color: #f3f3f3;
+  font-size: 14px;
+  height: 46px;
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* Fix padding issue */
+}
+
+/* Focus color change */
+.input-with-icon input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+}
+/* Note: The rgba above is hardcoded for guinda, we might want to be more generic or specific. 
+   css var with alpha is tricky without calc or separate r/g/b vars. 
+   For now, simple border color change is sufficient, maybe skip shadow or make it neutral.
+*/
+
+.btn-login {
+  border-radius: 999px;
+  border: 2px solid var(--primary-color);
+  background-color: transparent;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+  height: 48px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.forgot-link {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+  .card-login {
+    margin: 20px;
+    padding: 25px 20px;
+    border-radius: 25px;
+  }
+
+  .brand-title {
+    letter-spacing: 10px;
+    font-size: 32px;
+  }
+}
