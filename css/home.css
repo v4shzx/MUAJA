@@ -409,3 +409,75 @@ body::after {
   padding: 20px;
   background-size: 50% 50%;
 }
+
+/* Events Management Styles */
+.events-management {
+  max-width: 100%;
+}
+
+.events-table {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.events-table thead {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.events-table thead th {
+  border: none;
+  padding: 15px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.events-table tbody td {
+  padding: 15px;
+  vertical-align: middle;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.events-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.events-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.events-table .btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+/* Modal Customization */
+.modal-header {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.modal-header .btn-close {
+  filter: brightness(0) invert(1);
+}
+
+.modal-body .form-label {
+  font-weight: 500;
+  color: #555;
+}
+
+.modal-body .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(128, 0, 32, 0.15);
+}
+
+.modal-footer .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.modal-footer .btn-primary:hover {
+  filter: brightness(1.1);
+}

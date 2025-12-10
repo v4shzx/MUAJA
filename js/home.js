@@ -151,8 +151,113 @@ document.addEventListener('DOMContentLoaded', () => {
                 // but standard CDN script often watches DOM. We'll rely on attributes for now.
                 break;
             case 'eventos':
-                contentHeader.textContent = 'Eventos';
-                contentBody.innerHTML = '<p>Aquí podrás ver todos los eventos programados.</p>';
+                contentHeader.textContent = 'Gestión de Eventos';
+                contentBody.innerHTML = `
+                    <div class="events-management">
+                        <!-- Create Event Button -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="section-title mb-0">Lista de Eventos</h3>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal" onclick="openEventModal()">
+                                <i class="bi bi-plus-circle"></i> Crear Evento
+                            </button>
+                        </div>
+
+                        <!-- Events Table -->
+                        <div class="table-responsive">
+                            <table class="table table-hover events-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                        <th>Ubicación</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="eventsTableBody">
+                                    <tr>
+                                        <td>Conferencia Internacional</td>
+                                        <td>15 Dic 2025</td>
+                                        <td>10:00 AM</td>
+                                        <td>Aula Magna</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editEvent(0)">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteEvent(0)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Taller de Robótica</td>
+                                        <td>18 Dic 2025</td>
+                                        <td>2:00 PM</td>
+                                        <td>Laboratorio 3</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editEvent(1)">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteEvent(1)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Graduación 2024</td>
+                                        <td>20 Dic 2025</td>
+                                        <td>5:00 PM</td>
+                                        <td>Auditorio Principal</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editEvent(2)">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteEvent(2)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Event Modal -->
+                        <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="eventModalLabel">Crear Evento</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="eventForm">
+                                            <div class="mb-3">
+                                                <label for="eventName" class="form-label">Nombre del Evento</label>
+                                                <input type="text" class="form-control" id="eventName" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="eventDate" class="form-label">Fecha</label>
+                                                <input type="date" class="form-control" id="eventDate" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="eventTime" class="form-label">Hora</label>
+                                                <input type="time" class="form-control" id="eventTime" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="eventLocation" class="form-label">Ubicación</label>
+                                                <input type="text" class="form-control" id="eventLocation" required>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary" onclick="saveEvent()">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
                 break;
             case 'ajustes':
                 contentHeader.textContent = 'Ajustes de Perfil';
@@ -165,14 +270,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         <form class="settings-form">
                             <div class="mb-3">
                                 <label class="form-label">Nombre Completo</label>
-                                <input type="text" class="form-control" value="Usuario de MUAJA">
+                                <input type="text" class="form-control" value="MIGUEL CRUZ SAMANO" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Matricula</label>
+                                <input type="text" class="form-control" value="UTOM20253456" readonly>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control" value="usuario@muaja.edu.mx">
+                                <input type="email" class="form-control" value="miguelcruzsamano@utom.edu.mx">
                             </div>
+        
                             <div class="mb-3">
                                 <label class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" value="********">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Confirmar Contraseña</label>
                                 <input type="password" class="form-control" value="********">
                             </div>
                             <button type="submit" class="btn btn-primary w-100 mt-3">Guardar Cambios</button>
@@ -204,3 +318,55 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Event Management Functions
+function openEventModal(eventId = null) {
+    const modal = document.getElementById('eventModal');
+    const modalTitle = document.getElementById('eventModalLabel');
+    
+    if (eventId !== null) {
+        modalTitle.textContent = 'Editar Evento';
+        // In a real app, load event data here
+    } else {
+        modalTitle.textContent = 'Crear Evento';
+        document.getElementById('eventForm').reset();
+    }
+}
+
+function saveEvent() {
+    const name = document.getElementById('eventName').value;
+    const date = document.getElementById('eventDate').value;
+    const time = document.getElementById('eventTime').value;
+    const location = document.getElementById('eventLocation').value;
+    
+    if (name && date && time && location) {
+        // In a real app, save to database
+        console.log('Saving event:', { name, date, time, location });
+        alert('Evento guardado exitosamente');
+        
+        // Close modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('eventModal'));
+        modal.hide();
+        
+        // Reset form
+        document.getElementById('eventForm').reset();
+    } else {
+        alert('Por favor completa todos los campos');
+    }
+}
+
+function editEvent(eventId) {
+    console.log('Editing event:', eventId);
+    openEventModal(eventId);
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('eventModal'));
+    modal.show();
+}
+
+function deleteEvent(eventId) {
+    if (confirm('¿Estás seguro de que deseas eliminar este evento?')) {
+        console.log('Deleting event:', eventId);
+        // In a real app, delete from database
+        alert('Evento eliminado');
+    }
+}
